@@ -40,6 +40,12 @@ func GetRequestByID(DB *gorm.DB, Id uuid.UUID) (*Requests, error) {
 	return request, result.Error
 }
 
+func GetRequestByReqID(DB *gorm.DB, Id int) (*Requests, error) {
+	var request *Requests
+	result := DB.Preload("Requester").First(&request, "req_id = ?", Id)
+	return request, result.Error
+}
+
 func GetRequests(DB *gorm.DB) ([]Requests, error) {
 	var requests []Requests
 	result := DB.Preload("Requester").Find(&requests)
