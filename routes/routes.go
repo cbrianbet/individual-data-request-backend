@@ -51,4 +51,8 @@ func Handlers(router *gin.Engine) {
 	router.POST("/add_review", controllers.AddReview)                      // add review
 	router.GET("/get_reviews/:thread_id", controllers.GetReviewsForThread) // get reviews
 
+	router.POST("/chat", controllers.CreateChatMessage)
+	router.GET("/chat/:request_id", controllers.GetChatMessagesByRequestID)
+	router.GET("/chat/:request_id/users", controllers.GetChatMessagesBetweenUsers)
+
 }
